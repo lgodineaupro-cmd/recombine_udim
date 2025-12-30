@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="128" height="40" viewBox="0 0 128 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LinkedIn">
-  <title>LinkedIn</title>
-  <rect width="128" height="40" rx="6" fill="#0f1724"/>
-  <g transform="translate(12,6)">
-    <rect x="0" y="2" width="20" height="20" rx="3" fill="#0A66C2" />
-    <text x="30" y="16" fill="#E8F4FF" font-family="Segoe UI, Arial, sans-serif" font-size="12">LinkedIn</text>
-  </g>
-</svg>
