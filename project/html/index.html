@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Freelance Life | Mon Parcours</title>
+    <meta name="description" content="Découvrez le parcours freelance de Lucas Godineau, ses outils et sa liberté créative.">
+    <style>
+        body {
+            overflow: hidden; /* Prevent scrolling */
+        }
+        .reveal {
+            width: 100vw; /* Full viewport width */
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Prevent overflow */
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/black.min.css">
+
+    <style>
+        :root {
+            --accent: #00f2ff;
+            --secondary: #7000ff;
+            --glass: rgba(0, 0, 0, 0.7);
+        }
+        @font-face {
+            font-family: 'AngryBirds';
+            src: url('../reference/typo/angrybirds-regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        .reveal h1, .reveal h2, .reveal h3 {
+            text-transform: uppercase;
+            font-weight: 900;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            font-family: 'AngryBirds', 'Segoe UI', Arial, sans-serif;
+        }
+        .highlight { color: var(--accent); }
+        
+        /* Style des boites de contenu */
+        .content-box {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            padding: 30px !important;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        
+        /* Effet de lueur sur les titres */
+        .glow {
+            color: #fff;
+            text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent);
+        }
+
+        /* Badge pour les stats ou les points clés */
+        .badge {
+            background: var(--secondary);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.5em !important;
+            vertical-align: middle;
+        }
+        /* Hotspots interactifs pour l'image PARCOURS */
+        .parcours-container{position:relative}
+        .parcours-overlay{position:absolute;inset:0;pointer-events:auto}
+        .parcours-hotspot{position:absolute;box-sizing:border-box;border:4px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);border-radius:8px;transition:box-shadow 180ms,background 180ms;pointer-events:auto;outline: none;-webkit-tap-highlight-color: transparent;}
+        .parcours-hotspot:hover{background:rgba(255,255,255,0.06)}
+        /* Active / focus styles: only blue outline and glow, remove default browser focus ring */
+        .parcours-hotspot.active,
+        .parcours-hotspot:focus,
+        .parcours-hotspot:focus-visible{
+            box-shadow:0 8px 30px rgba(0,242,255,0.18),0 0 30px rgba(112,0,255,0.14);
+            border-color:rgba(0,242,255,0.8);
+            background:linear-gradient(180deg,rgba(0,242,255,0.06),rgba(112,0,255,0.04));
+        }
+        /* remove any default focus outline from browsers (yellow/orange) */
+        .parcours-hotspot:focus{outline: none;}
+        .parcours-hotspot .label{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(100% + 8px);background:rgba(11,18,32,0.9);color:#e6f7ff;padding:6px 10px;border-radius:8px;font-size:0.85em;white-space:nowrap;display:none}
+        .parcours-hotspot:hover .label,.parcours-hotspot.active .label{display:block}
+    </style>
+    <style>
+        /* Ensure the page root centers its main content (modern flexbox method) */
+        html, body { height: 100%; }
+        body { display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+        /* Keep reveal full-size so slides still cover the viewport while body centers them */
+        .reveal { width: 100%; height: 100%; }
+    </style>
+    <style>
+        /* Optimisations pour une molette fluide */
+        html,body{touch-action:pan-y;-webkit-overflow-scrolling:touch}
+        .reveal .slides img{display:block;max-width:100%;height:auto;will-change:transform,opacity;transform:translateZ(0);backface-visibility:hidden}
+        .reveal{will-change:transform}
+    </style>
+    <style>
+        /* Styles pour la bande démo responsive — éviter le crop */
+        .demo-wrap{width:100%;display:flex;align-items:center;justify-content:center}
+        .demo-video{width:100%;max-width:1280px;height:auto;max-height:72vh;border-radius:8px;background:#000;object-fit:contain;display:block}
+        @media (max-width:900px){.demo-video{max-height:60vh}}
+        @media (max-width:600px){.demo-video{max-height:50vh}}
+        /* Garder la section sans overlay : seul le cadre interne (content-box) servira de cadre */
+        .demo-bg{position:relative}
+        /* Restaurer le carré noir arrondi derrière la bande démo */
+        .demo-bg .content-box{position:relative;z-index:2;background:rgba(0,0,0,0.85);backdrop-filter:blur(2px);box-shadow:0 12px 30px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.04);border-radius:36px;overflow:hidden;margin:28px 32px}
+        /* Garder la vidéo avec coins arrondis et fond noir (s'adapte au conteneur) */
+        .demo-bg .demo-video{background:#000;border-radius:24px;overflow:hidden;display:block;width:100%;box-sizing:border-box}
+        /* Fullscreen button overlay for demo player */
+        .demo-wrap{position:relative}
+        .fullscreen-btn{position:absolute;right:18px;bottom:18px;z-index:80;background:rgba(0,0,0,0.6);border:0;color:#e6f7ff;padding:8px;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;width:46px;height:46px}
+        .fullscreen-btn svg{width:18px;height:18px;display:block}
+        .fullscreen-btn:focus{outline:none;box-shadow:0 8px 30px rgba(0,242,255,0.12)}
+        .fullscreen-btn.is-full{background:rgba(255,255,255,0.08)}
+    </style>
+    <style>
+        /* Small reusable logo style for header/list logos (keeps aspect, crops to circle) */
+        .logo-small{width:40px;height:40px;flex:0 0 40px;border-radius:50%;object-fit:cover;object-position:center;display:block}
+        @media (max-width:600px){ .logo-small{width:32px;height:32px;flex:0 0 32px} }
+    </style>
+    <style>
+        /* Optimisations pour une molette fluide */
+        html,body{touch-action:pan-y;-webkit-overflow-scrolling:touch}
+        .reveal .slides img{display:block;max-width:100%;height:auto;will-change:transform,opacity;transform:translateZ(0);backface-visibility:hidden}
+        .reveal .slide{will-change:transform,opacity}
+        .reveal{will-change:transform}
+    </style>
+    <style>
+        /* Responsive rules for the STATUTS panel to keep content visible */
+        /* Section centered and sized relative to viewport so panel is perfectly centered */
+        #stats-section { display:flex; align-items:center; justify-content:center; padding:20px; min-height:100vh; box-sizing:border-box; }
+        /* responsive width: shrinks on small viewports, grows up to 1200px */
+        /* limit height so panel always fits the viewport (leave 80px total margin) */
+            #stats-panel { background:#fff; border-radius:20px; width:clamp(680px, 85vw, 1400px); box-sizing:border-box; margin:0 auto; padding:30px; box-shadow:0 20px 40px rgba(0,0,0,0.25); position:relative; max-height:70vh; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+        #stats-panel h2 { font-size:2em; margin:0 0 16px; }
+        #stats-panel .grid-2 { gap:20px; }
+
+        /* If viewport height is limited, reduce paddings and font-sizes to keep everything visible */
+        @media (max-height:900px) {
+            #stats-panel { padding:26px; }
+            #stats-panel h2 { font-size:1.9em; }
+            #stats-panel .grid-2 { gap:18px; }
+        }
+        @media (max-height:720px) {
+            #stats-panel { padding:20px; }
+            #stats-panel h2 { font-size:1.6em; }
+            #stats-panel .grid-2 { gap:16px; }
+            #stats-panel p, #stats-panel li { font-size:0.95em; }
+        }
+        @media (max-height:520px) {
+            /* very small: reduce more */
+            #stats-panel { padding:10px; }
+            #stats-panel h2 { font-size:1.2em; }
+            #stats-panel p, #stats-panel li { font-size:0.85em; }
+        }
+        /* Transparent backdrop that adapts to the size of the central image */
+        .transparent-backdrop{
+            display:inline-block;
+            padding:18px;
+            background:rgba(255,255,255,0.06);
+            backdrop-filter:blur(6px);
+            border-radius:22px;
+            box-shadow:0 12px 30px rgba(0,0,0,0.45);
+            border:1px solid rgba(255,255,255,0.06);
+        }
+        .transparent-backdrop .stats-image{display:block;max-width:90vw;max-height:80vh;width:auto;height:auto;border-radius:12px}
+    </style>
+    <style>
+        /* Force highlight color on h3 headings inside reveal (higher specificity) */
+        .reveal h3.highlight { color: var(--accent) !important; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- INTRO -->
+                <section data-background-image="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop" data-background-opacity="0.4">
+                <h1 class="glow">Freelance <br><span style="color:var(--secondary)">Creative</span></h1>
+                <hr style="width: 50%; border-color: var(--accent);">
+                <p>Mon parcours, mes outils, ma liberté</p>
+            </section>
+
+            <!-- MON PARCOURS -->
+            <section data-background-image="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop" data-background-opacity="0.3">
+                <!-- Container sans style content-box pour éviter le double cadre -->
+                <div style="position:relative; width:90%; max-width:1200px; margin:0 auto;" class="parcours-container">
+                    <div class="transparent-backdrop" style="display:block; position:relative; width:100%;">
+                        <img id="parcours-image" src="../assets/images/PARCOURS.png" alt="Parcours" class="stats-image" loading="eager" style="width:100%; height:auto; display:block; border-radius:20px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); aspect-ratio: auto; object-fit: contain;"/>
+                        <div class="parcours-overlay" style="position:absolute;inset:0;pointer-events:auto;top:0;left:0;width:100%;height:100%;">
+                               <a class="parcours-hotspot" href="#" style="left:35.6%;top:29%;width:25.7%;height:11%;position:absolute;z-index:50;" aria-label="ARTFX" data-name="ARTFX"></a>
+                               <a class="parcours-hotspot" href="#" style="left:46.3%;top:44.2%;width:26.3%;height:10.3%;position:absolute;z-index:50;" aria-label="Canada" data-name="Canada"></a>
+                               <a class="parcours-hotspot" href="#" style="left:29.4%;top:59.1%;width:26.2%;height:10.2%;position:absolute;z-index:50;" aria-label="Ecosse" data-name="Ecosse"></a>
+                               <a class="parcours-hotspot" href="#" style="left:45.4%;top:73.7%;width:26.25%;height:10.4%;position:absolute;z-index:50;" aria-label="France" data-name="France"></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BANDE DÉMO (placée après Mon Parcours) - RESTAURATION: vidéo originale -->
+            <section class="demo-bg" data-background-image="../assets/images/fond_page_3.jpg" data-background-opacity="0.3">
+                <div class="content-box" style="text-align:center;">
+                    <h2>Bande démo</h2>
+                    <div class="demo-wrap" style="margin-top:12px;">
+                        <video class="demo-video" controls preload="metadata" playsinline controlsList="nodownload" poster="../assets/images/README.md">
+                            <!-- MP4 (préféré) -->
+                            <source src="../assets/videos/godineau-lucas-demoreel-mov-source.mp4" type="video/mp4">
+                            <!-- Fallback .mov -->
+                            <source src="../assets/videos/godineau-lucas-demoreel-mov-source.mov" type="video/quicktime">
+                            Votre navigateur ne supporte pas la lecture de cette vidéo. Pour compatibilité maximale, convertissez le fichier en MP4 (H.264) et nommez-le <code>godineau-lucas-demoreel-mov-source.mp4</code> dans <code>presentation_brassart/assets/videos/</code>.
+                        </video>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STATUTS ET LIMITES (replaced by image on page 4 as requested) -->
+            <section>
+                <section id="stats-section" data-background-image="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop" data-background-opacity="0.3">
+                    <div style="display:flex; align-items:center; justify-content:center; width:100%; padding:40px 0; box-sizing:border-box;">
+                        <div class="transparent-backdrop">
+                            <img src="../assets/images/page_4.jpg" alt="Page 4" class="stats-image" />
+                        </div>
+                    </div>
+                </section>
+                <section data-background-image="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2070&auto=format&fit=crop" data-background-opacity="0.3">
+                    <div class="content-box">
+                        <h3>Pourquoi j'ai changé ?</h3>
+                        <p>"Je suis passé de <span class="highlight">Micro-entreprise</span> à <span class="highlight">SARL</span> car mon CA dépassait les plafonds et je voulais optimiser mes charges."</p>
+                    </div>
+                </section>
+            </section>
+
+            <!-- DEMARCHAGE -->
+            <section data-background-image="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop" data-background-opacity="0.2">
+                <h2>03. Démarchage : La Jungle</h2>
+                <div class="grid-2">
+                    <div class="content-box fragment fade-right" style="font-size: 0.6em;">
+                        <h3 class="highlight">Habitudes de Fer</h3>
+                        <ul>
+                            <li>Relance régulière</li>
+                            <li>Post LinkedIn régulier</li>
+                            <li>Veille stratégique (Malt, 3dvf...)</li>
+                        </ul>
+                    </div>
+                    <div class="content-box fragment fade-left" style="font-size: 0.6em;">
+                        <h3 class="highlight">Le Réflexe Gagnant</h3>
+                        <p>Ne pas vendre un service, <br><span class="highlight">vendre une solution à un problème.</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PRIX DU MARCHÉ -->
+            <section data-background-image="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2011&auto=format&fit=crop" data-background-opacity="0.2">
+                <div class="content-box">
+                    <h2>04. Le Prix de ta liberté</h2>
+                    <p>Comment fixer son TJM ?</p>
+                    <h3 class="glow" style="font-size: 2em; color: #00ff00;">[300 - 500]€</h3>
+                    <p style="font-size: 0.6em;">Selon l'expérience, la niche et l'urgence.</p>
+                    <p class="fragment" style="color: var(--accent);">Règle d'or : TJM = (Salaire net visé x 2) / 18 jours travaillés</p>
+                </div>
+            </section>
+
+            <!-- RESEAU ET ISOLEMENT -->
+            <section>
+                <section data-background-image="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop" data-background-opacity="0.3">
+                    <div class="content-box">
+                        <h2>05. Le Réseau</h2>
+                        <p>Ton réseau est ton <span class="highlight">assurance chômage</span>.</p>
+                        <ul>
+                            <li>Participer à des meetups</li>
+                            <li>Aider les autres sans attendre</li>
+                            <li>Garder contact avec les anciens collègues</li>
+                        </ul>
+                    </div>
+                </section>
+                <section data-background-image="https://images.unsplash.com/photo-1590608897129-79da98d15969?q=80&w=2070&auto=format&fit=crop" data-background-opacity="0.3">
+                    <div class="content-box">
+                        <h3>Contre la solitude 🧘</h3>
+                        <p>1. Coworking (au moins 1j/semaine)</p>
+                        <p>2. Bureaux partagés avec d'autres créatifs</p>
+                        <p>3. Sport ou activités hors écran à 18h pile !</p>
+                    </div>
+                </section>
+            </section>
+
+            <!-- PORTFOLIO / BOOK -->
+            <section data-background-image="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1964&auto=format&fit=crop" data-background-opacity="0.4">
+                <div class="content-box">
+                    <h2>06. Vitrine Digitale</h2>
+                    <div class="grid-2" style="font-size: 0.7em;">
+                        <div>
+                            <h4 class="highlight">Où se montrer ?</h4>
+                            <p style="display:flex;align-items:center;gap:12px;margin:8px 0;">
+                                <img src="../assets/images/logos/artstation.jpeg" alt="ArtStation" style="width:40px;height:40px;border-radius:50%;object-fit:cover;display:block;"/>
+                                <span>ArtStation <span class="badge">Artistes</span></span>
+                            </p>
+                            <p style="display:flex;align-items:center;gap:12px;margin:8px 0;">
+                                <img src="../assets/images/logos/linkedin.svg" alt="LinkedIn" style="width:40px;height:40px;border-radius:8px;object-fit:contain;display:block;"/>
+                                <span>LinkedIn <span class="badge">Professionnel</span></span>
+                            </p>
+                            <p style="display:flex;align-items:center;gap:12px;margin:8px 0;">
+                                <img src="../assets/images/logos/perso.jpg" onerror="this.onerror=null;this.src='../assets/images/logos/perso.svg';" alt="Photo Perso" class="logo-small" />
+                                <span>Site Perso <span class="badge">Le Top</span></span>
+                            </p>
+                        </div>
+                        <div>
+                            <h4 style="color: #ff4d4d;">À éviter ❌</h4>
+                            <ul style="font-size:0.85em;line-height:1.4;">
+                                <li>mettre des projets inachevés</li>
+                                <li>un profil pas clair</li>
+                                <li>des photos non pros</li>
+                                <li>laisser ses premiers projets</li>
+                                <li>travailler gratuitement</li>
+                                <li>ne pas faire signer ses devis</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- COMMUNICATION -->
+            <section data-background-image="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop" data-background-opacity="0.2">
+                <div class="content-box">
+                    <h2>07. Se faire connaître</h2>
+                    <p>La règle des 3C :</p>
+                    <h3 class="fragment grow highlight">Contenu</h3>
+                    <h3 class="fragment grow highlight">Constance</h3>
+                    <h3 class="fragment grow highlight">Confiance</h3>
+                    
+                </div>
+            </section>
+
+            <!-- CONCLUSION -->
+            <!-- LIENS UTILLES -->
+            <section data-background-color="#0b1220">
+                <div class="content-box">
+                    <h2>Liens Utiles</h2>
+                    <div style="display:flex;flex-direction:column;gap:12px;">
+                        <a class="link-logo" href="https://www.artstation.com/lucasgodineau" target="_blank" rel="noreferrer noopener" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;">
+                            <img src="../assets/images/logos/artstation.jpeg" alt="ArtStation" style="width:48px;height:48px;display:block;border-radius:50%;object-fit:cover;"/>
+                            <span style="font-weight:700;color:#e6f7ff">ArtStation — lucasgodineau</span>
+                        </a>
+                        <a class="link-logo" href="https://www.linkedin.com/in/lucas-g-37506aa8/" target="_blank" rel="noreferrer noopener" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;">
+                            <img src="../assets/images/logos/linkedin.svg" alt="LinkedIn" style="width:48px;height:48px;display:block;border-radius:8px;object-fit:contain;background:transparent;padding:0;box-sizing:content-box;"/>
+                            <span style="font-weight:700;color:#e6f7ff">LinkedIn — Lucas G</span>
+                        </a>
+                    </div>
+                </div>
+                <style>
+                    .reveal section[data-background-color="#0b1220"]::before {
+                        content: '';
+                        position: absolute;
+                        inset: 0;
+                        background: radial-gradient(ellipse at center, transparent 0%, rgb(0, 0, 0) 100%);
+                        pointer-events: none;
+                        z-index: 1;
+                    }
+                    .reveal section[data-background-color="#0b1220"] .content-box {
+                        position: relative;
+                        z-index: 2;
+                    }
+                </style>
+            </section>
+            <!-- Page 13 removed — replaced by preferred final slide (page 14) below -->
+            <section class="final-bg" data-background-image="../assets/images/fond_page_3.jpg" data-background-opacity="0.15">
+                <div class="content-box" style="max-width:920px;margin:0 auto;padding:36px;border-radius:20px;background:linear-gradient(135deg, rgba(0,162,255,0.18) 0%, rgba(0,112,180,0.12) 50%, rgba(0,60,120,0.16) 100%);border:1px solid rgba(255,255,255,0.06);box-shadow:0 18px 40px rgba(0,0,0,0.6);color:#e6f7ff;">
+                    <h1 class="glow">Prêt à décoller ?</h1>
+                    <p>Merci de votre attention !</p>
+                    <div style="margin-top: 50px;">
+                        <p style="font-size: 0.8em;">Questions ? ✨</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <style>
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(0, 242, 255, 0.4), 0 0 40px rgba(0, 242, 255, 0.2), inset 0 0 20px rgba(0, 150, 200, 0.1);
+                transform: scale(1);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(0, 242, 255, 0.8), 0 0 80px rgba(0, 242, 255, 0.5), inset 0 0 40px rgba(0, 150, 200, 0.3);
+                transform: scale(1.02);
+            }
+        }
+        .reveal .slides>section.final-bg .content-box {
+            animation: pulse-glow 2.5s ease-in-out infinite;
+            transform-origin: center;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: 'c/t',
+            // 'slide' est plus léger que 'zoom' et provoque moins de jank
+            transition: 'slide',
+            backgroundTransition: 'fade',
+            // On gère la molette nous-mêmes pour limiter le travail JS
+            mouseWheel: false,
+            controlsLayout: 'bottom-right'
+        });
+
+        (function(){
+            const THRESHOLD = 100; // valeur accumulée deltaY avant changement
+            const COOLDOWN = 600; // ms
+            let acc = 0;
+            let lastTime = 0;
+            let cooldownTimer = null;
+
+            window.addEventListener('wheel', function(e){
+                // accumulate deltas close in time
+                const now = Date.now();
+                if(now - lastTime > 120) acc = 0;
+                acc += e.deltaY;
+                lastTime = now;
+
+                if(Math.abs(acc) >= THRESHOLD){
+                    // If we are on the parcours slide, cycle hotspots instead of changing slides
+                    const cur = Reveal.getCurrentSlide();
+                    const onParcours = !!cur && cur.querySelector && cur.querySelector('#parcours-image');
+                    if(onParcours){
+                        // positive delta => next hotspot, negative => previous
+                        if(acc > 0) cycleHotspot(1); else cycleHotspot(-1);
+                    } else {
+                        if(acc > 0){
+                            Reveal.next();
+                        } else {
+                            Reveal.prev();
+                        }
+                    }
+                    acc = 0;
+                    clearTimeout(cooldownTimer);
+                    // small cooldown to avoid multiple rapid triggers
+                    cooldownTimer = setTimeout(()=>{ acc = 0; }, COOLDOWN);
+                }
+            }, {passive: true});
+        })();
+        // Prevent hotspot clicks from navigating or changing slides; toggle visual active state instead
+        (function(){
+            document.addEventListener('DOMContentLoaded', function(){
+                document.querySelectorAll('.parcours-hotspot').forEach(function(el){
+                    el.setAttribute('role','button');
+                    el.setAttribute('tabindex','0');
+                    el.addEventListener('click', function(ev){
+                        ev.preventDefault();
+                        ev.stopPropagation();
+                        // single-select: deactivate others then activate this one
+                        document.querySelectorAll('.parcours-hotspot').forEach(function(n){ n.classList.remove('active'); });
+                        el.classList.add('active');
+                    });
+                    el.addEventListener('keydown', function(ev){ if(ev.key === 'Enter' || ev.key === ' '){ ev.preventDefault(); document.querySelectorAll('.parcours-hotspot').forEach(function(n){ n.classList.remove('active'); }); el.classList.add('active'); } });
+                });
+            });
+        })();
+
+        // Cycle hotspots (single-select) — used by wheel handler when on parcours slide
+        function cycleHotspot(direction){
+            // desired order: ARTFX, Canada, Ecosse, France (we ensured DOM order matches)
+            const nodes = Array.from(document.querySelectorAll('.parcours-hotspot'));
+            if(!nodes.length) return;
+            let currentIndex = nodes.findIndex(n => n.classList.contains('active'));
+            // if none selected, choose first for positive scroll, last for negative
+            if(currentIndex === -1){
+                currentIndex = (direction > 0) ? -1 : 0;
+            }
+            // If currently on the last hotspot (France) and scrolling forward, go to next slide
+            if(direction > 0 && currentIndex === nodes.length - 1){
+                Reveal.next();
+                return;
+            }
+            // If currently on the first hotspot (ARTFX) and scrolling backward, go to previous slide
+            if(direction < 0 && currentIndex === 0){
+                Reveal.prev();
+                return;
+            }
+            let nextIndex = (currentIndex + direction + nodes.length) % nodes.length;
+            // single-select
+            nodes.forEach(n => n.classList.remove('active'));
+            nodes[nextIndex].classList.add('active');
+            // ensure keyboard focus follows selection for accessibility
+            nodes[nextIndex].focus();
+        }
+
+        // Ensure demo player is correctly sized when the demo slide becomes active
+        function ensureDemoPlayerLayout(slide){
+            if(!slide) slide = Reveal.getCurrentSlide();
+            if(!slide) return;
+            const demo = slide.querySelector && slide.querySelector('.demo-video');
+            if(!demo) return;
+            // Reset any scroll and force layout recalculation
+            try{ window.scrollTo(0,0); }catch(e){}
+            if(typeof Reveal.layout === 'function') Reveal.layout();
+            // Apply sizing constraints matching CSS
+            demo.style.width = '100%';
+            demo.style.maxHeight = '72vh';
+            demo.style.objectFit = 'contain';
+
+            // Ensure the video shows the first frame (time = 0) when arriving on the slide
+            (function setVideoToStart(video){
+                if(!video) return;
+                function goToStart(){
+                    try{ video.pause(); video.currentTime = 0; }catch(e){}
+                }
+                if(!isNaN(video.duration) && video.readyState >= 1){
+                    goToStart();
+                } else {
+                    var cb = function(){ video.removeEventListener('loadedmetadata', cb); goToStart(); };
+                    video.addEventListener('loadedmetadata', cb);
+                }
+            })(demo);
+
+            // Small async tweak to ensure browser reflows the video element
+            setTimeout(function(){
+                if(typeof Reveal.layout === 'function') Reveal.layout();
+                window.dispatchEvent(new Event('resize'));
+                try{ window.scrollTo(0,0); }catch(e){}
+            }, 120);
+        }
+
+        Reveal.on && Reveal.on('slidechanged', function(evt){
+            ensureDemoPlayerLayout(evt.currentSlide || evt.slide);
+            ensureParcoursImageLoaded(evt.currentSlide || evt.slide);
+        });
+        // also ensure layout on ready (in case we start on the demo slide)
+        Reveal.on && Reveal.on('ready', function(evt){ 
+            ensureDemoPlayerLayout(evt.currentSlide || evt.slide); 
+            ensureParcoursImageLoaded(evt.currentSlide || evt.slide);
+        });
+
+        // Ensure parcours image is loaded before positioning hotspots
+        function ensureParcoursImageLoaded(slide){
+            if(!slide) slide = Reveal.getCurrentSlide();
+            if(!slide) return;
+            const parcoursImg = slide.querySelector && slide.querySelector('#parcours-image');
+            if(!parcoursImg) return;
+            
+            // If image is already loaded, we're done
+            if(parcoursImg.complete && parcoursImg.naturalHeight !== 0) {
+                return;
+            }
+            
+            // Otherwise, wait for it to load
+            parcoursImg.addEventListener('load', function onLoad(){
+                parcoursImg.removeEventListener('load', onLoad);
+                // Force layout recalculation after image loads
+                if(typeof Reveal.layout === 'function') Reveal.layout();
+                window.dispatchEvent(new Event('resize'));
+            }, {once: true});
+        }
+    </script>
+    
+</body>
+</html>
