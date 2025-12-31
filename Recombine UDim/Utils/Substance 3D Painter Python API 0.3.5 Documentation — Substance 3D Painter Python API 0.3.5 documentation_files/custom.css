@@ -1,0 +1,9 @@
+/* prevent horizontal stacking of properties */
+.py.property {
+  display: block !important;
+}
+
+/* allows word wrap in simple tables */
+.wy-table-responsive table td, .wy-table-responsive table th {
+    white-space: normal;
+}
